@@ -98,7 +98,8 @@ header.scrolled {
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 1px;
   text-decoration: none;
   transition: var(--transition);
 }
@@ -145,22 +146,59 @@ header.scrolled {
   transform: scale(1.2);
 }
 
+/* Link en logo Ratti */
+.brand-subtitle a,
+.collaboration-logo a {
+  display: inline-block;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.brand-subtitle a:hover,
+.collaboration-logo a:hover {
+  opacity: 0.8;
+}
+
+.brand-subtitle a img,
+.collaboration-logo a img {
+  display: block;
+}
+
+/* Contenedor de textos del brand */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+}
+
 /* Textos del brand */
 .brand-title {
   font-weight: 700;
   letter-spacing: 0.3px;
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 1.1;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .brand-subtitle {
   font-size: 11px;
   color: var(--muted);
-  margin-top: 3px;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
-  line-height: 1.2;
+  gap: 2px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.ratti-link {
+  display: inline-flex;
+  align-items: center;
 }
 
 .navlinks {
