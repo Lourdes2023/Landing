@@ -109,8 +109,8 @@ header.scrolled {
 
 /* Logo principal de García */
 .logo-garcia {
-  width: 90px;
-  height: 90px;
+  width: 75px;
+  height: 75px;
   object-fit: cover;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.9);
@@ -1124,3 +1124,105 @@ footer {
 .hidden {
   display: none;
 }
+
+/* ===================================
+   BANNER DE COOKIES
+   =================================== */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-top: 2px solid var(--primary);
+  padding: 16px;
+  z-index: 9999;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cookie-banner.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cookie-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.cookie-banner-text p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.cookie-banner-text a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.cookie-banner-text a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.cookie-banner-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cookie-banner-buttons .btn {
+  font-size: 13px;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+/* Responsive para mobile */
+@media (max-width: 768px) {
+  .cookie-banner {
+    padding: 12px;
+  }
+
+  .cookie-banner-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cookie-banner-text {
+    min-width: 100%;
+  }
+
+  .cookie-banner-text p {
+    font-size: 13px;
+  }
+
+  .cookie-banner-buttons {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .cookie-banner-buttons .btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+

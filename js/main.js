@@ -493,3 +493,88 @@ if ('performance' in window) {
     console.log('⚡ Tiempo de carga:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
   });
 }
+
+// ===================================
+// GESTIÓN DE COOKIES Y CONSENTIMIENTO
+// ===================================
+class CookieConsent {
+  constructor() {
+    this.storageKey = 'cookieConsent';
+    this.init();
+  }
+
+  init() {
+    // Verificar si el usuario ya ha dado consentimiento
+    if (!this.hasConsent()) {
+      this.showBanner();
+    }
+  }
+
+  hasConsent() {
+    return localStorage.getItem(this.storageKey) === 'accepted';
+  }
+
+  showBanner() {
+    // Crear el banner
+    const banner = document.createElement('div');
+    banner.id = 'cookie-banner';
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'alert');
+    banner.setAttribute('aria-label', 'Aviso de cookies');
+
+    banner.innerHTML = `
+      <div class="cookie-banner-content">
+        <div class="cookie-banner-text">
+          <p>
+            <strong>Utilizamos cookies</strong> para asegurarnos de que obtengas la mejor experiencia en nuestro sitio web. 
+            Puedes obtener más información en nuestra 
+            <a href="politica-cookies.html" target="_blank" rel="noopener">Política de Cookies</a>
+          </p>
+        </div>
+        <div class="cookie-banner-buttons">
+          <button class="btn btn-ghost cookie-reject" aria-label="Rechazar cookies">Rechazar</button>
+          <button class="btn btn-primary cookie-accept" aria-label="Aceptar cookies">Aceptar</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    // Agregar animación
+    setTimeout(() => banner.classList.add('show'), 10);
+
+    // Event listeners
+    banner.querySelector('.cookie-accept').addEventListener('click', () => {
+      this.acceptCookies();
+    });
+
+    banner.querySelector('.cookie-reject').addEventListener('click', () => {
+      this.rejectCookies();
+    });
+  }
+
+  acceptCookies() {
+    localStorage.setItem(this.storageKey, 'accepted');
+    this.closeBanner();
+    console.log('✓ Cookies aceptadas');
+  }
+
+  rejectCookies() {
+    localStorage.setItem(this.storageKey, 'rejected');
+    this.closeBanner();
+    console.log('✓ Cookies rechazadas');
+  }
+
+  closeBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+      banner.classList.remove('show');
+      setTimeout(() => banner.remove(), 300);
+    }
+  }
+}
+
+// Inicializar consentimiento de cookies cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  new CookieConsent();
+});
